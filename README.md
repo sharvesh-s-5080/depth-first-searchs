@@ -55,8 +55,7 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
 </ol></B>
 
 <hr>
-<h3>Sample Input</h3>
-<hr>
+<h3>Sample Input:</h3>
 8 9 <BR>
 A B <BR>
 A C <BR>
@@ -68,15 +67,40 @@ D F <BR>
 G F <BR>
 F H <BR>
 <hr>
-<h3>Sample Output</h3>
-<hr>
+<h3>Sample Output:</h3>
 ['A', 'B', 'E', 'D', 'C', 'G', 'F', 'H']
 
 <hr>
+<h3>PROGRAM:</h3>
+
+  ```
+        from collections import defaultdict
+        def dfs(graph,start,visited,path):
+            path.append(start)
+            visited[start]=True
+            for neighbour in graph[start]:
+                if visited[neighbour]==False:
+                    dfs(graph,neighbour,visited,path)
+                    visited[neighbour]=True
+            return path
+        graph=defaultdict(list)
+        n,e=map(int,input().split())
+        for i in range(e):
+            u,v=map(str,input().split())
+            graph[u].append(v)
+            graph[v].append(u)
+        start='A'
+        visited=defaultdict(bool)
+        path=[]
+        traversedpath=dfs(graph,start,visited,path)
+        print(traversedpath)
+  ```
+<hr>
+<h3>OUTPUT:</h3>
+<img width="455" height="389" alt="image" src="https://github.com/user-attachments/assets/6cf587d7-90e0-40b1-bf90-04b03af2b8c2" />
 
 <hr>
-<h3>Sample Input</h3>
-<hr>
+<h3>Sample Input:</h3>
 5 5 <BR>
 0 1 <BR>
 0 2 <BR>
@@ -84,9 +108,37 @@ F H <BR>
 2 3 <BR>
 2 4 <BR>
 <hr>
-<h3>Sample Output</h3>
-<hr>
+<h3>Sample Output:</h3>
 ['0', '1', '2', '3', '4']
+
+<hr>
+<h3>PROGRAM:</h3>
+
+```
+from collections import defaultdict
+def dfs(graph,start,visited,path):
+    path.append(start)
+    visited[start]=True
+    for neighbour in graph[start]:
+        if visited[neighbour]==False:
+            dfs(graph,neighbour,visited,path)
+            visited[neighbour]=True
+    return path
+graph=defaultdict(list)
+n,e=map(int,input().split())
+for i in range(e):
+    u,v=map(str,input().split())
+    graph[u].append(v)
+    graph[v].append(u)
+start='0'
+visited=defaultdict(bool)
+path=[]
+traversedpath=dfs(graph,start,visited,path)
+print(traversedpath)
+```
+<hr>
+<h3>OUTPUT:</h3>
+<img width="293" height="279" alt="image" src="https://github.com/user-attachments/assets/de3e13ba-9be9-480d-af46-4f091138b935" />
 
 <hr>
 <h3>Result:</h3>
